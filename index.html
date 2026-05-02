@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- تأكد إن اسم الريبوزيتوري Portfolio بنفس الحروف -->
+  <!-- ده السطر اللي بيعرف المتصفح مكان الفولدر الأساسي -->
   <base href="/Portfolio/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Mahmoud Essam - Flutter Developer Portfolio">
 
-  <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="mahmoud_essam">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
+  
   <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>Mahmoud Essam | Portfolio</title>
   
-  <!-- تم تعديل مسار المانيفست ليكون نسبي -->
+  <!-- استدعينا المانيفست بمسار نسبي عشان ميحصلش 404 -->
   <link rel="manifest" href="manifest.json">
-
-  <!-- بننادي على ملف البوتستراب اللي فلاتر بتطلبه في النسخ الجديدة -->
-  <script src="flutter_bootstrap.js" async></script>
 </head>
 <body>
+  <!-- السكريبت ده هو اللي بيقوم الليلة كلها في النسخ الجديدة -->
+  <script src="flutter_bootstrap.js" async></script>
+
   <script>
-    // تعديل بسيط لضمان تحميل الـ Renderer المناسب للموبايل والكمبيوتر
+    // تعديل خاص عشان الـ Renderer يشتغل صح مع مسار الـ Portfolio
     window.addEventListener('load', function(ev) {
       if (window._flutter) {
         _flutter.loader.loadEntrypoint({
           onEntrypointLoaded: function(engineInitializer) {
             engineInitializer.initializeEngine({
-              renderer: "html", 
+              renderer: "html", // ده اللي هيشغل الموقع على الموبايل بسلاسة
             }).then(function(appRunner) {
               appRunner.runApp();
             });
