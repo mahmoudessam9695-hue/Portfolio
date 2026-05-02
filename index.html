@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- ده السطر اللي بيعرف المتصفح مكان الفولدر الأساسي -->
+  <!-- تأكد أن اسم الفولدر على جيت هاب هو Portfolio بنفس حالة الأحرف -->
   <base href="/Portfolio/">
 
   <meta charset="UTF-8">
@@ -16,21 +16,21 @@
 
   <title>Mahmoud Essam | Portfolio</title>
   
-  <!-- استدعينا المانيفست بمسار نسبي عشان ميحصلش 404 -->
-  <link rel="manifest" href="manifest.json">
+  <!-- استدعاء المانيفست بمسار نقطي لضمان بقائه داخل المجلد الحالي -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- استدعاء ملف البوتستراب بمسار نقطي أيضاً -->
+  <script src="./flutter_bootstrap.js" async></script>
 </head>
 <body>
-  <!-- السكريبت ده هو اللي بيقوم الليلة كلها في النسخ الجديدة -->
-  <script src="flutter_bootstrap.js" async></script>
-
   <script>
-    // تعديل خاص عشان الـ Renderer يشتغل صح مع مسار الـ Portfolio
+    // هذا الكود يضمن تحميل المحرك حتى لو فشل البوتستراب في التعرف على المسار
     window.addEventListener('load', function(ev) {
-      if (window._flutter) {
+      if (window._flutter && window._flutter.loader) {
         _flutter.loader.loadEntrypoint({
           onEntrypointLoaded: function(engineInitializer) {
             engineInitializer.initializeEngine({
-              renderer: "html", // ده اللي هيشغل الموقع على الموبايل بسلاسة
+              renderer: "html", // لضمان العمل على الموبايل
             }).then(function(appRunner) {
               appRunner.runApp();
             });
