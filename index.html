@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- تأكد إن اسم الريبوزيتوري Portfolio بنفس الحروف -->
   <base href="/Portfolio/">
 
   <meta charset="UTF-8">
@@ -17,29 +18,29 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>Mahmoud Essam | Portfolio</title>
+  
+  <!-- تم تعديل مسار المانيفست ليكون نسبي -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- فلاتر لودر عشان نتحكم في الـ Renderer -->
-  <script src="flutter.js" defer></script>
+  <!-- بننادي على ملف البوتستراب اللي فلاتر بتطلبه في النسخ الجديدة -->
+  <script src="flutter_bootstrap.js" async></script>
 </head>
 <body>
   <script>
+    // تعديل بسيط لضمان تحميل الـ Renderer المناسب للموبايل والكمبيوتر
     window.addEventListener('load', function(ev) {
-      // تحميل محرك فلاتر مع إجبار استخدام HTML renderer للموبايل
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: "1", // ده بيساعد في تحديث النسخة عند المستخدمين
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({
-            renderer: "html", 
-          }).then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
+      if (window._flutter) {
+        _flutter.loader.loadEntrypoint({
+          onEntrypointLoaded: function(engineInitializer) {
+            engineInitializer.initializeEngine({
+              renderer: "html", 
+            }).then(function(appRunner) {
+              appRunner.runApp();
+            });
+          }
+        });
+      }
     });
   </script>
 </body>
 </html>
-
